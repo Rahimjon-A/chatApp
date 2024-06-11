@@ -102,7 +102,7 @@
       }
 
       &.logout {
-        background-color: rgba(17, 25, 40, 0.3);
+        background-color: rgba(17, 25, 40, 0.5);
 
         &:hover {
         background-color: rgba(17, 25, 40, 0.712);
