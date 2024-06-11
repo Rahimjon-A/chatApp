@@ -1,7 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: "Manrope", sans-serif;
+}
+
+body {
+  background-image: url('/bg.jpg');
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.container {
+  background-color: rgba(19, 21, 65, 0.75);
+  backdrop-filter: blur(19px) saturate(180%);
+  width: 90vw;
+  height: 90vh;
+  border-radius: 15px;
+  border: solid 1px rgba(255, 255, 255, 0.3);
+  display: flex;
+}
+
+::-webkit-scrollbar{
+  width: 0px;
 }

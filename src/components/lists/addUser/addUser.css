@@ -1,0 +1,67 @@
+.addUser {
+  padding: 1.25rem;
+  border-radius: 10px;
+  width: max-content;
+  height: max-content;
+  background-color: rgba(17, 25, 40, 0.8);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+
+  form {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+
+    input {
+      flex:1;
+      padding: 0.8rem;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      width: 18.75rem;
+    }
+
+    button{
+      background-color: #5183fe;
+      border: none;
+      padding: 0.8rem 0.4rem;
+      border-radius: 5px;
+      color: azure;
+      cursor: pointer;
+    }
+  }
+
+  .user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.125rem;
+    margin-top:3.25rem ;
+
+    .detail {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      img{
+        width: 3.125rem;
+        height: 3.125rem;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+
+    button {
+      background-color: #5183fe;
+      border-radius: 5px;
+      color: azure;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+    }
+  }
+}
