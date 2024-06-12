@@ -8,9 +8,14 @@ import { useChatStore } from '../../../library/chatStore ';
 
 const ChatList = () => {
   const [addMode, setAddMode] = useState(false);
+  const [input, setInput] = useState('');
   const [chats, setChats] = useState([]);
   const { currentUser } = useUserStore();
   const { changeChat } = useChatStore();
+
+  const filteredChats = chats.filter((item) =>
+    item.user.username.toLowerCase().includes(input.toLowerCase())
+  );
 
   useEffect(() => {
     const unSub = onSnapshot(doc(db, 'userchats', currentUser.id), async (res) => {
@@ -60,7 +65,7 @@ const ChatList = () => {
       <div className="search">
         <div className="searchBar">
           <img src="./search.png" alt="" />
-          <input type="text" placeholder="Search" />
+          <input type="text" placeholder="Search" onChange={(e) => setInput(e.target.value)} />
         </div>
 
         <img
@@ -71,7 +76,7 @@ const ChatList = () => {
         />
       </div>
 
-      {chats.map((chat) => (
+      {filteredChats.map((chat) => (
         <div
           style={{ backgroundColor: chat?.isSeen ? 'transparent' : '#5183fe' }}
           key={chat.id}
