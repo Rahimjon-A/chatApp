@@ -27,6 +27,19 @@ const Login = () => {
     const formData = new FormData(e.target);
     const { email, username, password } = Object.fromEntries(formData);
     setLoading(true);
+
+    // VALIDATE INPUTS
+    if (!username || !email || !password) return toast.warn('Please enter inputs!');
+    if (!avatar.file) return toast.warn('Please upload an avatar!');
+
+    // VALIDATE UNIQUE USERNAME
+    const usersRef = collection(db, 'users');
+    const q = query(usersRef, where('username', '==', username));
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      return toast.warn('Select another username');
+    }
+
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       const imgUrl = await upload(avatar.file);
@@ -56,7 +69,7 @@ const Login = () => {
     const formData = new FormData(e.target);
     const { email, password } = Object.fromEntries(formData);
     try {
-       await signInWithEmailAndPassword(auth, email, password)
+      await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       console.log(error);
       toast.error(error.message);

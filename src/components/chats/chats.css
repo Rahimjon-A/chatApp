@@ -136,6 +136,8 @@
       gap: 1.25rem;
 
       label{
+        margin-top: 0.5rem ;
+
         &:disabled{
           cursor: not-allowed;
         }

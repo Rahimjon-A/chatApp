@@ -26,7 +26,7 @@ const Details = () => {
       <div className="user">
         <img src={user?.avatar || "./avatar.png" } alt="" />
         <h2>{user?.username} </h2>
-        <p>Lorem ipsum dolor, sit amet consectetur </p>
+        <p> </p>
       </div>
 
       <div className="info">

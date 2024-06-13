@@ -6,6 +6,7 @@ import { db } from '../../library/firebase';
 import { useChatStore } from '../../library/chatStore ';
 import { useUserStore } from '../../library/userStore';
 import upload from '../../library/upload';
+import { format } from 'timeago.js';
 
 const Chats = () => {
   const [open, setOpen] = useState(false);
@@ -23,7 +24,7 @@ const Chats = () => {
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, []);
+  }, [chats?.messages]);
 
   useEffect(() => {
     const unSub = onSnapshot(doc(db, 'chats', chatId), (res) => {
@@ -88,14 +89,14 @@ const Chats = () => {
       });
     } catch (error) {
       console.log(error);
+    } finally {
+      setImg({
+        file: null,
+        url: '',
+      });
+
+      setText('');
     }
-
-    setImg({
-      file: null,
-      url: '',
-    });
-
-    setText('');
   };
 
   return (
@@ -105,7 +106,7 @@ const Chats = () => {
           <img src={user?.avatar || './avatar.png'} alt="avatar" />
           <div className="text">
             <span>{user?.username} </span>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis, laborum?</p>
+            <p></p>
           </div>
         </div>
 
@@ -125,7 +126,7 @@ const Chats = () => {
             <div className="text">
               {message.img && <img src={message.img || './avatar.png'} alt="" />}
               <p>{message.text}</p>
-              <span>1 min ago</span>
+              {/* <span>{ format(message?.createdAt?.toDate()) }</span>  */}
             </div>
           </div>
         ))}
@@ -142,9 +143,11 @@ const Chats = () => {
 
       <div className="bottom">
         <div className="icons">
-          <label htmlFor="file" disabled={isCurrentUserBlocked || isReceiverBlocked}>
+
+          <label htmlFor="file" className='file' disabled={isCurrentUserBlocked || isReceiverBlocked}>
             <img src="./img.png" alt="" />
           </label>
+
           <input type="file" id="file" hidden onChange={handleImg} />
           <img src="./camera.png" alt="" />
           <img src="./mic.png" alt="" />
@@ -152,7 +155,11 @@ const Chats = () => {
         <input
           type="text"
           value={text}
-          placeholder={ (isCurrentUserBlocked || isReceiverBlocked) ? "You cannot send a message" : "Type a message..." }
+          placeholder={
+            isCurrentUserBlocked || isReceiverBlocked
+              ? 'You cannot send a message'
+              : 'Type a message...'
+          }
           onChange={(e) => setText(e.target.value)}
           disabled={isCurrentUserBlocked || isReceiverBlocked}
         />
