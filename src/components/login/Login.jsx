@@ -3,7 +3,7 @@ import './login.css';
 import { toast } from 'react-toastify';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../../library/firebase';
-import { doc, setDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
 import upload from '../../library/upload';
 
 const Login = () => {
